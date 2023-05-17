@@ -1,0 +1,17 @@
+<div [ngClass]="{'exchange': true}">
+  <h1>EXCHANGE</h1>
+  <div class="exchange__input">
+    <input class="exchange__input-box" name="quantity" type="number" min="0" step="0.01"
+      placeholder="Introduce cantidad cambio" [(ngModel)]="quantity">
+    <span class="exchange__input-base">{{currencyList.base}}</span>
+  </div>
+  <div class="exchange__container">
+    <div class="exchange__container-box" *ngFor="let rate of currencyList.rates | keyvalue">
+      <button class="exchange__container-box-button" (click)="getCurrency(rate.key)">
+        {{rate.key}}
+        <img class="exchange__container-box-img" src="./assets/{{rate.key}}.png">
+      </button>
+      <p class="exchange__container-boxquantity">{{((rate.value) * quantity).toFixed(3)}}</p>
+    </div>
+  </div>
+</div>
